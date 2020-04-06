@@ -12,8 +12,8 @@ const Home = () => {
           <Col xs={10}>
             <Row noGutters>
               <Column xs={6}>
-                <Floating title={'Equipamentos balanceados'} icon={hat} color={'#04AB63'} top={'100px'} left={'0%'} />
-                <Floating title={'Nível Máximo 99/70'} icon={goal} color={'#04AB63'} top={'100px'} left={'100%'} />
+                <Floating title={'Equipamentos balanceados'} icon={hat} color={'#FF84A6'} top={'100px'} left={'0%'} />
+                <Floating title={'Nível Máximo 99/70'} icon={goal} color={'#CB2D43'} top={'100px'} left={'100%'} />
                 <Floating title={'Segurança Gepard 3.0'} icon={gepard} color={'#04AB63'} left={'50%'} />
               </Column>
               <Col xs={6} className={'d-flex justify-content-end'}>

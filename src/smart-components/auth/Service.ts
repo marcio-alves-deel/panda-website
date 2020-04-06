@@ -5,8 +5,9 @@ import IErrorDelegate from 'common/types/IErrorDelegate'
 import ISuccessDelegate from 'common/types/ISuccessDelegate'
 
 export default class AuthService {
-  static onRegister(onSuccess: ISuccessDelegate, onError: IErrorDelegate) {
+  static onRegister(onSuccess: ISuccessDelegate, onError: IErrorDelegate, setProgress: any) {
     return async (query: IUser) => {
+      setProgress(true)
       const [response, , requestError] = await AuthService.register(query)
 
       if (Boolean(requestError)) {
@@ -16,6 +17,7 @@ export default class AuthService {
         onError('')
         onSuccess(userResponse as ISuccessDelegate)
       }
+      setProgress(false)
     }
   }
 

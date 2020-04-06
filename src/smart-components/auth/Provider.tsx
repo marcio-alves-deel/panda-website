@@ -5,7 +5,8 @@ import { IUser } from 'common/types'
 export const authContext = {
   state: {
     error: '',
-    response: {}
+    response: {},
+    progress: false
   },
   handlers: {
     onRegister: (_query: IUser) => {},
@@ -18,6 +19,7 @@ export const AuthContextProvider = React.createContext<typeof authContext>(authC
 const Provider: React.FC = ({ children }) => {
   const [error, setError] = useState(null)
   const [response, setResponse] = useState(null)
+  const [progress, setProgress] = useState(false)
 
   const onError = (message: string) => {
     setError(message)
@@ -27,8 +29,12 @@ const Provider: React.FC = ({ children }) => {
     setResponse(res)
   }
 
+  const onProgress = (progressValue: boolean) => {
+    setProgress(progressValue)
+  }
+
   const handlers = {
-    onRegister: AuthService.onRegister(onSuccess, onError),
+    onRegister: AuthService.onRegister(onSuccess, onError, onProgress),
     setError
   }
 
@@ -36,7 +42,8 @@ const Provider: React.FC = ({ children }) => {
     ...authContext,
     state: {
       error,
-      response
+      response,
+      progress
     },
     handlers
   }

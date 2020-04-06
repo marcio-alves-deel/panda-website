@@ -11,9 +11,23 @@ import {
 } from './Styles'
 import { Col, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { AuthProvider, AuthContext, AuthContextProvider } from 'smart-components'
 import IUser from 'common/types/IUser'
+
+import styled from 'styled-components'
+
+const Div = styled(FontAwesomeIcon)`
+  -webkit-animation: spin 1s infinite linear;
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+`
 
 const initialState = {
   userid: '',
@@ -94,8 +108,20 @@ const Component: React.FC = () => {
         {authContext.state.error && <ErrorMessage>{authContext.state.error}</ErrorMessage>}
         {authContext.state.response && <SuccessMessage>Usuário registrado com sucesso!</SuccessMessage>}
         <Row className={'justify-content-end w-100'}>
-          <EnterButton onClick={handleSubmit} type={'submit'}>
-            <FontAwesomeIcon icon={faChevronRight} style={{ color: 'white', fontSize: 12 }} />
+          <EnterButton onClick={handleSubmit} type={'submit'} disabled={authContext.state.progress}>
+            {!authContext.state.progress && (
+              <FontAwesomeIcon icon={faChevronRight} style={{ color: 'white', fontSize: 12 }} />
+            )}
+            {authContext.state.progress && (
+              <Div
+                icon={faSpinner}
+                style={{
+                  color: 'white',
+                  fontSize: 12
+                }}
+                className={'animated'}
+              />
+            )}
           </EnterButton>
         </Row>
       </form>
