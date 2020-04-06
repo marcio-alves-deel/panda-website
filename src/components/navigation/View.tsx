@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
 import { Link, ListItem, NavigationList, NavigationRow } from './Styles'
+import { logo } from 'assets/images'
 
 const menuItems = [
   {
@@ -32,7 +33,9 @@ const menuItems = [
 const Component: React.FC = () => {
   return (
     <NavigationRow noGutters>
-      <Col>Logo</Col>
+      <Col>
+        <img src={logo} alt={'PandaRO'} />
+      </Col>
       <NavigationList>
         {menuItems.map(menu => {
           return (
