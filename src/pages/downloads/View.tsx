@@ -45,12 +45,7 @@ const Infos = () => {
               O link abaixo contem todos os arquivos necessários para poder executar corretamente o servidor!
             </InfoDescription>
             <InfoDescription>Extraia-o para uma pasta limpa.</InfoDescription>
-            <Link href={'http://download.playragnarokonlinebr.com/Ragnarok/Installer/Ragnarok.exe'}>
-              Link Direto
-            </Link> |{' '}
-            <Link href={'http://download.playragnarokonlinebr.com/Ragnarok/Installer/Ragnarok.exe.torrent'}>
-              Torrent
-            </Link>
+            <Link href={'https://mega.nz/file/4JRjSQjS#Q2BwB3vRSvOHWBhrTG6KR2pbjU_yZ3Qf2FzsHWt2--w'}>Link Direto</Link>
           </Col>
         </InfoList>
         <br />
