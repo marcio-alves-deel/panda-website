@@ -45,7 +45,8 @@ const Infos = () => {
               O link abaixo contem todos os arquivos necessários para poder executar corretamente o servidor!
             </InfoDescription>
             <InfoDescription>Extraia-o para uma pasta limpa.</InfoDescription>
-            <Link href={'https://mega.nz/file/4JRjSQjS#Q2BwB3vRSvOHWBhrTG6KR2pbjU_yZ3Qf2FzsHWt2--w'}>Link Direto</Link>
+            <Link href={'https://mega.nz/file/4JRjSQjS#Q2BwB3vRSvOHWBhrTG6KR2pbjU_yZ3Qf2FzsHWt2--w'}>Mega</Link> |{' '} 
+			<Link href={'http://www.mediafire.com/file/76xi00odebfg6kg/Play_-_PandaRO.rar/file'}>Mediafire</Link>
           </Col>
         </InfoList>
         <br />
