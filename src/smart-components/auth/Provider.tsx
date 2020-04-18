@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import AuthService from './Service'
-import { IUser } from 'common/types'
+import { IUser, IUserData } from 'common/types'
+import IApiResponse from 'common/types/IApiResponse'
 
 export const authContext = {
   state: {
     error: '',
     response: {},
-    progress: false
+    progress: false,
+    validationError: {}
   },
   handlers: {
     onRegister: (_query: IUser) => {},
@@ -14,10 +16,21 @@ export const authContext = {
   }
 }
 
+const convertArrayToObject = (array: any[], key: string) => {
+  const initialValue = {}
+  return array.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item[key]]: item.message.replace(/"/g, "'")
+    }
+  }, initialValue)
+}
+
 export const AuthContextProvider = React.createContext<typeof authContext>(authContext)
 
 const Provider: React.FC = ({ children }) => {
   const [error, setError] = useState(null)
+  const [validationError, setValidationError] = useState({})
   const [response, setResponse] = useState(null)
   const [progress, setProgress] = useState(false)
 
@@ -25,16 +38,22 @@ const Provider: React.FC = ({ children }) => {
     setError(message)
   }
 
-  const onSuccess = (res: object) => {
-    setResponse(res)
+  const onValidationError = (errors: object[]) => {
+    setValidationError(convertArrayToObject(errors, 'param'))
   }
+
+  const onSuccess = useCallback((result: IApiResponse<IUserData>) => {
+    if (result.data) {
+      setResponse(result.data)
+    }
+  }, [])
 
   const onProgress = (progressValue: boolean) => {
     setProgress(progressValue)
   }
 
   const handlers = {
-    onRegister: AuthService.onRegister(onSuccess, onError, onProgress),
+    onRegister: AuthService.onRegister(onSuccess, onError, onValidationError, onProgress),
     setError
   }
 
@@ -43,7 +62,8 @@ const Provider: React.FC = ({ children }) => {
     state: {
       error,
       response,
-      progress
+      progress,
+      validationError
     },
     handlers
   }

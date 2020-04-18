@@ -1,7 +1,8 @@
 import React from 'react'
-import { Col } from 'react-bootstrap'
-import { Link, ListItem, NavigationList, NavigationRow } from './Styles'
-import { logo } from 'assets/images'
+import { Fade } from 'react-awesome-reveal'
+import { useStyles } from './Styles'
+import { Link } from '@reach/router'
+import { Hidden } from '@material-ui/core/'
 
 const menuItems = [
   {
@@ -15,37 +16,30 @@ const menuItems = [
   {
     label: 'Download',
     link: '/download'
-  },
-  {
-    label: 'Doações',
-    link: '/'
-  },
-  {
-    label: 'Rankings',
-    link: '/'
-  },
-  {
-    label: 'Comércio',
-    link: '/'
   }
 ]
 
 const Component: React.FC = () => {
+  const classes = useStyles()
+
   return (
-    <NavigationRow noGutters>
-      <Col>
-        <img src={logo} alt={'PandaRO'} />
-      </Col>
-      <NavigationList>
-        {menuItems.map(menu => {
-          return (
-            <ListItem>
-              <Link href={menu.link}>{menu.label}</Link>
-            </ListItem>
-          )
-        })}
-      </NavigationList>
-    </NavigationRow>
+    <div className={classes.root}>
+      <Hidden smDown>
+        <Fade delay={1000} triggerOnce>
+          <ul className={classes.menuList}>
+            {menuItems.map(item => {
+              return (
+                <li className={classes.menuItem}>
+                  <Link to="#infos" className={classes.linkStyle}>
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </Fade>
+      </Hidden>
+    </div>
   )
 }
 

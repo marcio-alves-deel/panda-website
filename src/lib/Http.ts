@@ -15,7 +15,7 @@ async function executeAxiosRequest<T>({
   data,
   params,
   headers
-}: IAxiosRequest): Promise<[T | null, number, string | null]> {
+}: IAxiosRequest): Promise<[T | null, number, string | object]> {
   try {
     const response = await axios({
       baseURL: API.BASE_URL,
@@ -25,12 +25,12 @@ async function executeAxiosRequest<T>({
       data,
       params
     })
-    if (response.data.error) return [null, response.data.error.status, response.data.error.message]
+    if (response.data.error) return [null, response.data.error.status, response.data.error]
 
     return [response.data as T, response.status, null]
   } catch (error) {
     if (error.response) {
-      return [null, error.response.status, error.message]
+      return [null, error.response.status, error.response.data]
     }
 
     return [null, 0, error.message]
@@ -38,7 +38,7 @@ async function executeAxiosRequest<T>({
 }
 
 export default class Http {
-  static async get<T>(url: string, params = {}): Promise<[T | null, number, string | null]> {
+  static async get<T>(url: string, params = {}): Promise<[T | null, number, string | object]> {
     return executeAxiosRequest<T>({ url, method: 'GET', params })
   }
 
@@ -46,15 +46,15 @@ export default class Http {
     url: string,
     data: TData,
     headers?: object
-  ): Promise<[TResult | null, number, string | null]> {
+  ): Promise<[TResult | null, number, string | object]> {
     return executeAxiosRequest<TResult>({ url, method: 'POST', data, headers })
   }
 
-  static async put<TData, TResult>(url: string, data: TData): Promise<[TResult | null, number, string | null]> {
+  static async put<TData, TResult>(url: string, data: TData): Promise<[TResult | null, number, string | object]> {
     return executeAxiosRequest<TResult>({ url, method: 'PUT', data })
   }
 
-  static async $delete<T>(url: string): Promise<[T | null, number, string | null]> {
+  static async $delete<T>(url: string): Promise<[T | null, number, string | object]> {
     return executeAxiosRequest<T>({ url, method: 'DELETE' })
   }
 }

@@ -35,7 +35,9 @@
     "node_modules",
     "scripts",
     "tasks",
-    "stories"
+    "stories",
+    "src/**/*.min.js",
+    "src/**/*.jsx"
   ],
-  "include": ["src"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

@@ -1,6 +1,10 @@
 export default interface IUser {
+  name: string
   userid: string
-  user_pass: string
   email: string
-  user_pass_confirmation: string
+  phone: string
+  birthdate: string
+  pincode: string
+  userPass: string
+  userPassConfirmation: string
 }

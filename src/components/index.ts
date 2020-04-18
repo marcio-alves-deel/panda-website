@@ -1,6 +1,3 @@
-export { Header } from './header'
 export { Navigation } from './navigation'
-export { Floating } from './floating-info'
-export { SignIn } from './signin'
-export { NewsNavigation } from './news-navigation'
-export { InfoCard } from './info-card'
+export { Header } from './header'
+export { Footer } from './footer'

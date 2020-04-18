@@ -1,3 +1,3 @@
-type IErrorDelegate = (error: string) => void
+type IErrorDelegate = (error: any) => void
 
 export default IErrorDelegate

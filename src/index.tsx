@@ -1,25 +1,54 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Home, Infos, Downloads } from 'pages'
+import { Home } from 'pages'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Router, RouteComponentProps, globalHistory } from '@reach/router'
 import { QueryParamProvider } from 'use-query-params'
-import { Header } from 'components'
-import { Footer } from 'components/footer'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
+import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
+import { Register } from 'pages/signin'
+
+function createMyTheme(options: ThemeOptions) {
+  return createMuiTheme({
+    ...options
+  })
+}
 
 const HomeCoponent = (_: RouteComponentProps) => <Home />
-const InfosCoponent = (_: RouteComponentProps) => <Infos />
-const DownloadsCoponent = (_: RouteComponentProps) => <Downloads />
+const RegisterCoponent = (_: RouteComponentProps) => <Register />
+
+export const theme = createMyTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '#root': {
+          minWidth: '100%',
+          minHeight: '100%'
+        },
+        body: {
+          padding: 0
+        },
+        html: {
+          position: 'relative',
+          minWidth: '100%',
+          minHeight: '100%',
+          margin: 0,
+          overflowX: 'hidden'
+        }
+      }
+    }
+  }
+})
 
 ReactDOM.render(
-  <QueryParamProvider reachHistory={globalHistory}>
-    <Header />
-    <Router>
-      <HomeCoponent path="/" />
-      <InfosCoponent path="/infos" />
-      <DownloadsCoponent path="/download" />
-    </Router>
-    <Footer />
-  </QueryParamProvider>,
+  <ThemeProvider theme={theme}>
+    <QueryParamProvider reachHistory={globalHistory}>
+      <CssBaseline />
+      <Router>
+        <HomeCoponent path="/" />
+        <RegisterCoponent path="/registrar" />
+      </Router>
+    </QueryParamProvider>
+  </ThemeProvider>,
   document.getElementById('root')
 )

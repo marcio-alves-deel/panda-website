@@ -1,15 +1,15 @@
 import React from 'react'
-import { Wrapper, Copyright } from './Styles'
-import { Container } from 'react-bootstrap'
+import { useStyles } from './Styles'
+import { Typography } from '@material-ui/core/'
 
 const Component: React.FC = () => {
+  const classes = useStyles()
+
   return (
-    <Wrapper>
-      <Container>
-        <Copyright>Copyright 2020!</Copyright>
-        <Copyright>All Registered Trademarks belong to their Respective Owners and Gravity Co.LTD.</Copyright>
-      </Container>
-    </Wrapper>
+    <div className={classes.root}>
+      <Typography>Copyright 2020</Typography>
+      <Typography>Todos os direitos reservados a Panda Ragnarok Online</Typography>
+    </div>
   )
 }
 
