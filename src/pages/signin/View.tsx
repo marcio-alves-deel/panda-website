@@ -11,16 +11,16 @@ import { AuthContext, AuthContextProvider, AuthProvider } from 'smart-components
 
 const today = new Date()
 const initialRegister = {
-  name: 'marcio welben',
-  userid: 'mriaco',
-  email: 'marcio.welben@gmail.com',
-  phone: '1215616',
+  name: '',
+  userid: '',
+  email: '',
+  phone: '',
   birthdate: `${(today.getFullYear() - 6).toString()}-${
     today.getMonth() >= 10 ? today.getMonth() : `0${today.getMonth()}`
   }-${today.getDay() >= 10 ? today.getDay() : `0${today.getDay()}`}`,
-  pincode: '1231',
-  userPass: 'akpoask123',
-  userPassConfirmation: 'akpoask123'
+  pincode: '',
+  userPass: '',
+  userPassConfirmation: ''
 }
 
 const Register: React.FC = () => {
@@ -41,10 +41,7 @@ const Register: React.FC = () => {
   const handleRegister = async () => {
     await handlers.onRegister(
       Object.assign({}, register, {
-        birthdate: register.birthdate
-          .split('/')
-          .reverse()
-          .join('-')
+        birthdate: register.birthdate.split('/').reverse().join('-')
       })
     )
   }
@@ -77,7 +74,7 @@ const Register: React.FC = () => {
                 classes.bordered,
                 'd-flex flex-column justify-content-end align-items-start'
               ].join(' ')}
-              onSubmit={e => e.preventDefault()}
+              onSubmit={(e) => e.preventDefault()}
             >
               <p className={classes.title}>Crie uma conta!</p>
               <p className={classes.subtitle} style={{ textAlign: 'left' }}>
@@ -91,7 +88,7 @@ const Register: React.FC = () => {
                     type={'string'}
                     label="Nome de usuário"
                     value={register.userid}
-                    onChange={e => handleChangeRegister('userid', e.target.value)}
+                    onChange={(e) => handleChangeRegister('userid', e.target.value)}
                     variant="outlined"
                     autoComplete={'false'}
                     autoCorrect={'false'}
@@ -110,7 +107,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.name}
-                    onChange={e => handleChangeRegister('name', e.target.value)}
+                    onChange={(e) => handleChangeRegister('name', e.target.value)}
                     label="Nome"
                     variant="outlined"
                     autoComplete={'false'}
@@ -130,7 +127,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.email}
-                    onChange={e => handleChangeRegister('email', e.target.value)}
+                    onChange={(e) => handleChangeRegister('email', e.target.value)}
                     error={state.validationError.hasOwnProperty('email')}
                     label="Email"
                     variant="outlined"
@@ -147,7 +144,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.phone}
-                    onChange={e => handleChangeRegister('phone', e.target.value)}
+                    onChange={(e) => handleChangeRegister('phone', e.target.value)}
                     error={state.validationError.hasOwnProperty('phone')}
                     label="Telefone"
                     variant="outlined"
@@ -164,7 +161,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.birthdate}
-                    onChange={e => handleChangeRegister('birthdate', e.target.value)}
+                    onChange={(e) => handleChangeRegister('birthdate', e.target.value)}
                     error={state.validationError.hasOwnProperty('birthdate')}
                     label="Data de nascimento"
                     variant="outlined"
@@ -186,7 +183,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.pincode}
-                    onChange={e => handleChangeRegister('pincode', e.target.value)}
+                    onChange={(e) => handleChangeRegister('pincode', e.target.value)}
                     label="Pin Code (4 dígitos)"
                     variant="outlined"
                     autoComplete={'false'}
@@ -206,7 +203,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.userPass}
-                    onChange={e => handleChangeRegister('userPass', e.target.value)}
+                    onChange={(e) => handleChangeRegister('userPass', e.target.value)}
                     error={state.validationError.hasOwnProperty('userPass')}
                     label="Senha"
                     variant="outlined"
@@ -227,7 +224,7 @@ const Register: React.FC = () => {
                   <TextField
                     className={'w-100'}
                     value={register.userPassConfirmation}
-                    onChange={e => handleChangeRegister('userPassConfirmation', e.target.value)}
+                    onChange={(e) => handleChangeRegister('userPassConfirmation', e.target.value)}
                     error={state.validationError.hasOwnProperty('userPassConfirmation')}
                     label="Confirmação de senha"
                     variant="outlined"
