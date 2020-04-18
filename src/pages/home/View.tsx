@@ -3,18 +3,17 @@ import FirstBlock from './FirstBlock'
 import SecondBlock from './SecondBlock'
 import ThirdBlock from './ThirdBlock'
 import FourthBlock from './FourthBlock'
-import Scrollable from 'hide-scrollbar-react'
 import { Footer } from 'components'
 
 const Home = () => {
   return (
-    <Scrollable>
+    <React.Fragment>
       <FirstBlock />
       <SecondBlock />
       <ThirdBlock />
       <FourthBlock />
       <Footer />
-    </Scrollable>
+    </React.Fragment>
   )
 }
 
