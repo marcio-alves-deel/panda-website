@@ -55,14 +55,14 @@ const Component = () => {
                 <Grid item>
                   <Button
                     onClick={() =>
-                      navigate('https://mega.nz/file/gY4XRaZQ#qzXxZlmpY3nO-1QoXzV_VaMIesWOmvy5nPrHbYEI_j4')
+                      navigate('https://mega.nz/file/AI4BXCJC#nj1KiRXyRUG3JKRNJ1w9uyOVgW998oyfblLamdNO31c')
                     }
                   >
                     Mega
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button onClick={() => navigate('http://www.mediafire.com/file/z7vbimmx66jednt/PandaRO.rar/file')}>
+                  <Button onClick={() => navigate('https://www.mediafire.com/file/0ol3s3nmrlv0q2r/PandaRO.rar/file')}>
                     Mediafire
                   </Button>
                 </Grid>
