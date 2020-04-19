@@ -15,9 +15,9 @@ const initialRegister = {
   userid: '',
   email: '',
   phone: '',
-  birthdate: `${(today.getFullYear() - 6).toString()}-${
+  birthdate: `${today.getDate() >= 10 ? today.getDate() : `0${today.getDate()}`}/${
     today.getMonth() >= 10 ? today.getMonth() : `0${today.getMonth()}`
-  }-${today.getDay() >= 10 ? today.getDay() : `0${today.getDay()}`}`,
+  }/${(today.getFullYear() - 6).toString()}`,
   pincode: '',
   userPass: '',
   userPassConfirmation: ''
@@ -41,12 +41,13 @@ const Register: React.FC = () => {
   const handleRegister = async () => {
     await handlers.onRegister(
       Object.assign({}, register, {
-        birthdate: register.birthdate.split('/').reverse().join('-')
+        birthdate: register.birthdate.replace('\n', '').split('/').reverse().join('-')
       })
     )
   }
 
   const classes = useStyles()
+  console.log(register.birthdate.split('/').reverse().join('-'))
   return (
     <Div100vh>
       {!state.response && (

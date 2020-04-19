@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import { useStyles, Typography, Button } from './Styles'
 import { Fade } from 'react-awesome-reveal'
+import { navigate } from '@reach/router'
 
 const Component = () => {
   const classes = useStyles()
@@ -52,10 +53,18 @@ const Component = () => {
               </div>
               <Grid container justify={'space-around'} style={{ marginTop: 20 }}>
                 <Grid item>
-                  <Button>Mega</Button>
+                  <Button
+                    onClick={() =>
+                      navigate('https://mega.nz/file/gY4XRaZQ#qzXxZlmpY3nO-1QoXzV_VaMIesWOmvy5nPrHbYEI_j4')
+                    }
+                  >
+                    Mega
+                  </Button>
                 </Grid>
                 <Grid item>
-                  <Button>Mediafire</Button>
+                  <Button onClick={() => navigate('http://www.mediafire.com/file/z7vbimmx66jednt/PandaRO.rar/file')}>
+                    Mediafire
+                  </Button>
                 </Grid>
               </Grid>
             </div>
